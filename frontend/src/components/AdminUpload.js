@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function AdminUpload({ token, onLogout }) {
   const [file, setFile] = useState(null);
   const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false); // New loading state
   const navigate = useNavigate();
 
   const handleFileChange = (e) => {
@@ -20,6 +21,9 @@ export default function AdminUpload({ token, onLogout }) {
     const formData = new FormData();
     formData.append('media', file);
 
+    setLoading(true); // Start loading
+    setMessage('');
+
     try {
       const res = await axios.post('https://ritiks-insight-hub-nameverse.onrender.com/api/admin/upload', formData, {
         headers: {
@@ -27,6 +31,7 @@ export default function AdminUpload({ token, onLogout }) {
           Authorization: `Bearer ${token}`,
         }
       });
+
       if (res.data.success) {
         setMessage('File uploaded successfully!');
         setFile(null);
@@ -35,33 +40,33 @@ export default function AdminUpload({ token, onLogout }) {
       }
     } catch (err) {
       setMessage('Upload error');
+    } finally {
+      setLoading(false); // Stop loading
     }
   };
 
   const handleLogout = async () => {
-  setMessage('');  // Clear any old message
-  try {
-    await axios.post('https://ritiks-insight-hub-nameverse.onrender.com/api/admin/logout', {}, {
-      headers: { Authorization: `Bearer ${token}` }
-    });
-    onLogout();
-    
+    setMessage('');
+    try {
+      await axios.post('https://ritiks-insight-hub-nameverse.onrender.com/api/admin/logout', {}, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      onLogout();
 
-    toast.success('User logged out successfully', {
-      position: 'top-center',
-      autoClose: 3000,
-      onClose: () => navigate('/admin-login'),
-    });
-    localStorage.removeItem('adminToken');
-  } catch (err) {
-    setMessage('Logout failed');
-  }
-};
-
+      toast.success('User logged out successfully', {
+        position: 'top-center',
+        autoClose: 3000,
+        onClose: () => navigate('/admin-login'),
+      });
+      localStorage.removeItem('adminToken');
+    } catch (err) {
+      setMessage('Logout failed');
+    }
+  };
 
   return (
     <div className="container mt-5 pt-5" style={{ maxWidth: '500px', position: 'relative' }}>
-      {/* Logout button at top-right below navbar */}
+      {/* Logout button */}
       <button
         onClick={handleLogout}
         className="btn btn-danger"
@@ -71,8 +76,27 @@ export default function AdminUpload({ token, onLogout }) {
       </button>
 
       <h3>Upload Photos/Videos</h3>
-      <input type="file" accept="image/*,video/*" className="form-control mb-3" onChange={handleFileChange} />
-      <button onClick={handleUpload} className="btn btn-success mb-3">Upload</button>
+      <input
+        type="file"
+        accept="image/*,video/*"
+        className="form-control mb-3"
+        onChange={handleFileChange}
+      />
+
+      <button
+        onClick={handleUpload}
+        className="btn btn-success mb-3"
+        disabled={loading} // Disable while uploading
+      >
+        {loading ? (
+          <>
+            <span className="spinner-border spinner-border-sm me-2"></span>
+            Uploading...
+          </>
+        ) : (
+          'Upload'
+        )}
+      </button>
 
       {message && (
         <p className="mt-3" style={{ color: message.includes('successfully') ? 'green' : 'red' }}>
@@ -80,7 +104,6 @@ export default function AdminUpload({ token, onLogout }) {
         </p>
       )}
 
-      {/* Toast Container */}
       <ToastContainer />
     </div>
   );
