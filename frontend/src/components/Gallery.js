@@ -30,25 +30,29 @@ export default function Gallery() {
 
   return (
     <div className="container mt-5 pt-5">
-      <h3 className="mb-4 text-center">Gallery</h3>
-      <div className="row">
+      <h3 className="mb-4 text-center">📸 Gallery</h3>
+
+      {/* Masonry layout */}
+      <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3" data-masonry='{"percentPosition": true }'>
         {images.map((url, i) => (
-          <div key={i} className="col-6 col-md-3 mb-3">
-            {url.match(/\.(mp4|mov)$/i) ? (
-              <video
-                src={url}
-                controls
-                className="img-fluid rounded"
-                style={{ maxHeight: '200px', objectFit: 'cover' }}
-              />
-            ) : (
-              <img
-                src={url}
-                alt={`upload-${i}`}
-                className="img-fluid rounded"
-                style={{ maxHeight: '200px', objectFit: 'cover' }}
-              />
-            )}
+          <div key={i} className="col">
+            <div className="card shadow-sm border-0 rounded-4 overflow-hidden">
+              {url.match(/\.(mp4|mov)$/i) ? (
+                <video
+                  src={url}
+                  controls
+                  className="w-100"
+                  style={{ maxHeight: '250px', objectFit: 'cover' }}
+                />
+              ) : (
+                <img
+                  src={url}
+                  alt={`upload-${i}`}
+                  className="w-100"
+                  style={{ maxHeight: '250px', objectFit: 'cover' }}
+                />
+              )}
+            </div>
           </div>
         ))}
       </div>
