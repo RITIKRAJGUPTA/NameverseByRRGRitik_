@@ -14,7 +14,7 @@ export default function ContactForm() {
 
   const onSubmit = async (data) => {
     try {
-      await axios.post("http://localhost:5000/api/contact/submit", data);
+      await axios.post("https://ritiks-insight-hub-nameverse.onrender.com/api/contact/submit", data);
       toast.success("✅ Message sent successfully!", {
         position: "top-right",
         autoClose: 3000,
