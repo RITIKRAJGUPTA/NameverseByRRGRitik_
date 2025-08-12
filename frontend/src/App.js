@@ -11,7 +11,7 @@ const RockPaperScissors = lazy(() => import('./components/RockPaperScissors'));
 const ContactForm = lazy(() => import('./components/ContactForm'));
 const YoutubeSearch = lazy(() => import('./components/YoutubeSearch'));
 const Payment = lazy(() => import('./components/Payment'));
-const Ludo = lazy(() => import('./components/Ludo'));
+const Ludo = lazy(() => import('./components/Ludo/Ludo.js'));
 const LudoKing = lazy(() => import('./components/LudoKing'));
 const Gallery = lazy(() => import('./components/Gallery'));
 
@@ -45,9 +45,9 @@ function App() {
             <Route path="/contact" element={<ContactForm />} />
             <Route path="/search" element={<YoutubeSearch />} />
             <Route path="/payment" element={<Payment />} />
-            <Route path="/ludo" element={<Ludo />} />
             <Route path="/LudoKing" element={<LudoKing />} />
             <Route path="/gallery" element={<Gallery />} />
+            <Route path="/ludo" element={<Ludo />} />
           </Routes>
         </Suspense>
         <Footer />

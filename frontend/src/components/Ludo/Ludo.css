@@ -1,0 +1,496 @@
+/* Base responsive variables */
+:root {
+  --board-size: min(90vw, 90vh);
+  --cell-size: calc(var(--board-size) / 15);
+  --control-width: calc((100vw - var(--board-size)) / 2);
+  --profile-pic-size: clamp(40px, 8vw, 80px);
+  --font-size-small: clamp(10px, 2vw, 14px);
+  --font-size-medium: clamp(14px, 3vw, 18px);
+  --font-size-large: clamp(18px, 4vw, 26px);
+}
+
+/* Game board columns */
+.col {
+  background-color: aliceblue;
+  height: var(--cell-size);
+  max-height: var(--cell-size);
+  width: var(--cell-size);
+  max-width: var(--cell-size);
+  padding: 0px;
+  text-align: center;
+  overflow: visible;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+
+/* Game piece styling */
+.caracter {
+  -moz-box-shadow: 0px 1px 1px rgb(168, 168, 168);
+  -webkit-box-shadow: 0px 1px 1px rgb(168, 168, 168);
+  box-shadow: 0px 1px 1px rgb(168, 168, 168);
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  height: auto;
+  z-index: 2000;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50%;
+  position: relative;
+  max-width: 80%;
+  max-height: 80%;
+}
+
+/* Player piece positions */
+#pos-blue-1, #pos-blue-2, #pos-blue-3, #pos-blue-4, 
+#pos-red-1, #pos-red-2, #pos-red-3, #pos-red-4, 
+#pos-green-1, #pos-green-2, #pos-green-3, #pos-green-4, 
+#pos-yellow-1, #pos-yellow-2, #pos-yellow-3, #pos-yellow-4 {
+  overflow: visible;
+}
+
+#pos-blue-1 > img, #pos-blue-2 > img, #pos-blue-3 > img, #pos-blue-4 > img, 
+#pos-red-1 > img, #pos-red-2 > img, #pos-red-3 > img, #pos-red-4 > img, 
+#pos-green-1 > img, #pos-green-2 > img, #pos-green-3 > img, #pos-green-4 > img, 
+#pos-yellow-1 > img, #pos-yellow-2 > img, #pos-yellow-3 > img, #pos-yellow-4 > img {
+  left: 50%;
+  bottom: -50%;
+  right: auto;
+  position: relative;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Animation for moveable pieces */
+.abletomove {
+  animation: jump 1s infinite linear;
+}
+
+@keyframes jump {
+  0% { bottom: 1px; }
+  37% { bottom: 4px; }
+  50% { bottom: 6px; }
+  70% { bottom: 4px; }
+  100% { bottom: 1px; }
+}
+
+/* Main game container */
+.container_game {
+  display: flex;
+  flex-direction: row;
+  gap: clamp(5px, 1vw, 20px);
+  padding: clamp(5px, 1vw, 20px);
+  box-sizing: border-box;
+  min-height: 100vh;
+  align-items: center;
+}
+
+/* Control panels */
+.control-1 {
+  margin-left: 0px;
+  margin-right: auto;
+  order: 1;
+}
+
+.control-2 {
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+  order: 2;
+  flex: 0 0 auto;
+}
+
+.control-3 {
+  margin-left: auto;
+  margin-right: 0px;
+  order: 3;
+}
+
+.control-player {
+  height: auto;
+  min-height: 50vh;
+  width: var(--control-width);
+  max-width: 250px;
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* Profile styling */
+.profile_pic {
+  border-radius: 50%;
+  width: var(--profile-pic-size);
+  height: var(--profile-pic-size);
+  object-fit: cover;
+}
+
+.profile {
+  width: 100%;
+  text-align: center;
+  color: azure;
+  font-family: sans-serif;
+  font-size: var(--font-size-small);
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+/* Dice container */
+.de {
+  width: 100%;
+  text-align: center;
+  padding: 6px;
+  box-sizing: border-box;
+}
+
+/* Dashboard */
+.dashboard {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: row;
+  border: none;
+  background: linear-gradient(90deg, rgba(130, 55, 187, 0.31416316526610644) 0%, rgba(84, 30, 184, 1) 0%, rgba(84, 30, 184, 1) 0%, rgba(38, 126, 126, 1) 100%);
+  border-radius: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* Dice */
+.nard {
+  margin: 0 auto;
+  border-radius: 10px;
+  background-color: aliceblue;
+  width: clamp(40px, 8vw, 80px);
+  height: clamp(40px, 8vw, 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Dice points */
+.point_container::before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.one_point {
+  border-radius: 50%;
+  background-color: black;
+  width: clamp(8px, 2vw, 14px);
+  height: clamp(8px, 2vw, 14px);
+  display: inline-block;
+  vertical-align: middle;
+  margin: auto;
+}
+
+.point {
+  border-radius: 50%;
+  background-color: black;
+  width: clamp(6px, 1.5vw, 10px);
+  height: clamp(6px, 1.5vw, 10px);
+  display: inline-block;
+  vertical-align: middle;
+  margin-bottom: 4px;
+}
+
+/* Background */
+#parent_div {
+  background-image: url("../../img/background3.png");
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #e8b36d;
+  min-height: 100vh;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+/* Settings panel */
+.imgSetting {
+  width: var(--profile-pic-size);
+  height: var(--profile-pic-size);
+  border-radius: 50%;
+  border: none;
+  object-fit: cover;
+}
+
+.rowName {
+  margin-top: 5px;
+}
+
+.setting {
+  color: azure;
+  font-size: var(--font-size-medium);
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  min-height: 100vh;
+  padding: clamp(5px, 2vw, 20px);
+  background-color: rgba(2, 18, 48, 0.664);
+  box-sizing: border-box;
+}
+
+/* Start game button */
+.startGame {
+  margin: 10px auto;
+  color: aliceblue;
+  background-color: rgba(11, 23, 61, 0.966);
+  font-size: var(--font-size-large);
+  border: none;
+  border-radius: 5px;
+  padding: clamp(8px, 2vw, 15px) clamp(20px, 5vw, 35px);
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.startGame:hover {
+  background-color: rgba(11, 23, 61, 0.8);
+}
+
+/* Player name input */
+.playerName {
+  border: none;
+  border-radius: 6px;
+  margin-left: 13px;
+  width: calc(100% - 13px - var(--profile-pic-size));
+  min-width: 100px;
+  padding: 5px;
+  font-size: var(--font-size-small);
+  box-sizing: border-box;
+}
+
+/* Number of players controls */
+.nbPlayers {
+  width: clamp(16px, 3vw, 20px);
+  height: clamp(16px, 3vw, 20px);
+}
+
+.labelNbPlayers {
+  font-size: var(--font-size-large);
+}
+
+/* Color classes */
+.red { background-color: rgb(192, 0, 0); }
+.green { background-color: green; }
+.blue { background-color: rgb(38, 113, 252); }
+.yellow { background-color: rgb(216, 216, 0); }
+
+/* Center square */
+#center {
+  background: 
+    linear-gradient(45deg, rgb(38, 113, 252) 50%, rgb(192, 0, 0) 50%), 
+    linear-gradient(135deg, rgb(38, 113, 252) 50%, rgb(216, 216, 0) 50%), 
+    linear-gradient(135deg, rgb(192, 0, 0) 50%, green 50%), 
+    linear-gradient(225deg, green 50%, rgb(216, 216, 0) 50%);
+  background-size: 50% 50%;
+  background-position: 0% 0%, 0% 100%, 100% 0%, 100% 100%;
+  background-repeat: no-repeat;
+}
+
+/* Border classes */
+.left_top {
+  border-left: 1px solid rgb(109, 109, 109);
+  border-top: 1px solid rgb(109, 109, 109);
+}
+
+.right_bottom {
+  border-right: 1px solid rgb(109, 109, 109);
+  border-bottom: 1px solid rgb(109, 109, 109);
+}
+
+.right { border-right: 1px solid rgb(109, 109, 109); }
+.bottom { border-bottom: 1px solid rgb(109, 109, 109); }
+
+/* Colored corner squares - Green */
+.bottom_right_green, .top_left_green, .bottom_left_green, .top_right_green {
+  background-size: 51% 50%;
+  background-position: 0% 0%, 0% 100%, 100% 0%, 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.bottom_right_green {
+  background: linear-gradient(90deg, white 50%, white 50%), linear-gradient(180deg, white 50%, white 50%), linear-gradient(270deg, white 50%, white 50%), linear-gradient(360deg, green 50%, green 50%);
+}
+
+.top_left_green {
+  background: linear-gradient(90deg, green 50%, green 50%), linear-gradient(180deg, white 50%, white 50%), linear-gradient(270deg, white 50%, white 50%), linear-gradient(360deg, white 50%, white 50%);
+}
+
+.bottom_left_green {
+  background: linear-gradient(90deg, white 50%, white 50%), linear-gradient(180deg, green 50%, green 50%), linear-gradient(270deg, white 50%, white 50%), linear-gradient(360deg, white 50%, white 50%);
+}
+
+.top_right_green {
+  background: linear-gradient(90deg, white 50%, white 50%), linear-gradient(180deg, white 50%, white 50%), linear-gradient(270deg, green 50%, green 50%), linear-gradient(360deg, white 50%, white 50%);
+}
+
+/* Colored corner squares - Red */
+.bottom_right_red, .top_left_red, .bottom_left_red, .top_right_red {
+  background-size: 51% 50%;
+  background-position: 0% 0%, 0% 100%, 100% 0%, 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.bottom_right_red {
+  background: linear-gradient(90deg, white 50%, white 50%), linear-gradient(180deg, white 50%, white 50%), linear-gradient(270deg, white 50%, white 50%), linear-gradient(360deg, rgb(192, 0, 0) 50%, rgb(192, 0, 0) 50%);
+}
+
+.top_left_red {
+  background: linear-gradient(90deg, rgb(192, 0, 0) 50%, rgb(192, 0, 0) 50%), linear-gradient(180deg, white 50%, white 50%), linear-gradient(270deg, white 50%, white 50%), linear-gradient(360deg, white 50%, white 50%);
+}
+
+.bottom_left_red {
+  background: linear-gradient(90deg, white 50%, white 50%), linear-gradient(180deg, rgb(192, 0, 0) 50%, rgb(192, 0, 0) 50%), linear-gradient(270deg, white 50%, white 50%), linear-gradient(360deg, white 50%, white 50%);
+}
+
+.top_right_red {
+  background: linear-gradient(90deg, white 50%, white 50%), linear-gradient(180deg, white 50%, white 50%), linear-gradient(270deg, rgb(192, 0, 0) 50%, rgb(192, 0, 0) 50%), linear-gradient(360deg, white 50%, white 50%);
+}
+
+/* Colored corner squares - Blue */
+.bottom_right_blue, .top_left_blue, .bottom_left_blue, .top_right_blue {
+  background-size: 51% 50%;
+  background-position: 0% 0%, 0% 100%, 100% 0%, 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.bottom_right_blue {
+  background: linear-gradient(90deg, white 50%, white 50%), linear-gradient(0deg, white 50%, white 50%), linear-gradient(90deg, white 50%, white 50%), linear-gradient(0deg, rgb(38, 113, 252) 50%, rgb(38, 113, 252) 50%);
+}
+
+.top_left_blue {
+  background: linear-gradient(90deg, rgb(38, 113, 252) 50%, rgb(38, 113, 252) 50%), linear-gradient(0deg, white 50%, white 50%), linear-gradient(90deg, white 50%, white 50%), linear-gradient(0deg, white 50%, white 50%);
+}
+
+.bottom_left_blue {
+  background: linear-gradient(90deg, white 50%, white 50%), linear-gradient(0deg, rgb(38, 113, 252) 50%, rgb(38, 113, 252) 50%), linear-gradient(90deg, white 50%, white 50%), linear-gradient(0deg, white 50%, white 50%);
+}
+
+.top_right_blue {
+  background: linear-gradient(90deg, white 50%, white 50%), linear-gradient(0deg, white 50%, white 50%), linear-gradient(90deg, rgb(38, 113, 252) 50%, rgb(38, 113, 252) 50%), linear-gradient(0deg, white 50%, white 50%);
+}
+
+/* Colored corner squares - Yellow */
+.bottom_right_yellow, .top_left_yellow, .bottom_left_yellow, .top_right_yellow {
+  background-size: 51% 50%;
+  background-position: 0% 0%, 0% 100%, 100% 0%, 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.bottom_right_yellow {
+  background: linear-gradient(90deg, white 50%, white 50%), linear-gradient(180deg, white 50%, white 50%), linear-gradient(270deg, white 50%, white 50%), linear-gradient(360deg, rgb(216, 216, 0) 50%, rgb(216, 216, 0) 50%);
+}
+
+.top_left_yellow {
+  background: linear-gradient(90deg, rgb(216, 216, 0) 50%, rgb(216, 216, 0) 50%), linear-gradient(180deg, white 50%, white 50%), linear-gradient(270deg, white 50%, white 50%), linear-gradient(360deg, white 50%, white 50%);
+}
+
+.bottom_left_yellow {
+  background: linear-gradient(90deg, white 50%, white 50%), linear-gradient(180deg, rgb(216, 216, 0) 50%, rgb(216, 216, 0) 50%), linear-gradient(270deg, white 50%, white 50%), linear-gradient(360deg, white 50%, white 50%);
+}
+
+.top_right_yellow {
+  background: linear-gradient(90deg, white 50%, white 50%), linear-gradient(180deg, white 50%, white 50%), linear-gradient(270deg, rgb(216, 216, 0) 50%, rgb(216, 216, 0) 50%), linear-gradient(360deg, white 50%, white 50%);
+}
+
+/* Mobile and tablet responsive adjustments */
+@media (max-width: 768px) {
+  :root {
+    --board-size: 95vw;
+    --control-width: 100%;
+  }
+
+  .container_game {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .control-player {
+    width: 100%;
+    max-width: none;
+    min-width: none;
+    height: auto;
+    min-height: auto;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+
+  .control-1, .control-2, .control-3 {
+    order: initial;
+    margin: 0;
+  }
+
+  .profile {
+    width: auto;
+    min-width: 120px;
+    flex: 1;
+  }
+
+  .setting {
+    padding: 15px;
+  }
+
+  .playerName {
+    width: 100%;
+    margin: 5px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --board-size: 98vw;
+    --font-size-small: 10px;
+    --font-size-medium: 14px;
+    --font-size-large: 18px;
+  }
+
+  .container_game {
+    padding: 5px;
+  }
+
+  .control-player {
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .dashboard {
+    padding: 5px;
+  }
+
+  .startGame {
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+}
+
+/* Large screen adjustments */
+@media (min-width: 1920px) {
+  :root {
+    --board-size: min(80vw, 80vh);
+  }
+
+  .control-player {
+    max-width: 300px;
+  }
+}
+
+/* Landscape orientation on mobile */
+@media (orientation: landscape) and (max-width: 768px) {
+  :root {
+    --board-size: 90vh;
+  }
+
+  .container_game {
+    flex-direction: row;
+  }
+
+  .control-player {
+    width: calc((100vw - var(--board-size)) / 2);
+    flex-direction: column;
+  }
+}
