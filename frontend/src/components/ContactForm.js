@@ -65,7 +65,6 @@ export default function ContactForm() {
   })}
 />
 {errors.phone && <p className="text-danger small">{errors.phone.message}</p>}
-        {errors.number && <p className="text-danger small">{errors.number.message}</p>}
 
         {/* Message */}
         <textarea
