@@ -150,7 +150,7 @@
 }
 
 #parent_div {
-  background-image: url("./img/background3.png");
+  background-image: url('../../img/background3.png');
   background-size: 100%;
   overflow-x: hidden;
   overflow-y: hidden;
