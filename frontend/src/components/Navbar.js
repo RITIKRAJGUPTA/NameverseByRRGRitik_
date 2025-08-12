@@ -26,7 +26,6 @@ export default function Navbar({ adminLoggedIn, onLogout }) {
           <ul className="navbar-nav ms-auto">
             <li className="nav-item"><Link className="nav-link" to="/name" onClick={() => setIsCollapsed(true)}>Name Meaning</Link></li>
             <li className="nav-item"><Link className="nav-link" to="/game" onClick={() => setIsCollapsed(true)}>Game</Link></li>
-            <li className="nav-item"><Link className="nav-link" to="/ludo" onClick={() => setIsCollapsed(true)}>Ludo</Link></li>
             <li className="nav-item"><Link className="nav-link" to="/search" onClick={() => setIsCollapsed(true)}>YouTube Search</Link></li>
             <li className="nav-item"><Link className="nav-link" to="/contact" onClick={() => setIsCollapsed(true)}>Contact</Link></li>
             <li className="nav-item"><Link className="nav-link" to="/gallery" onClick={() => setIsCollapsed(true)}>Photos</Link></li>
