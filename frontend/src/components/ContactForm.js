@@ -53,17 +53,18 @@ export default function ContactForm() {
         {errors.email && <p className="text-danger small">{errors.email.message}</p>}
 
         {/* Phone Number */}
-        <input
-          className="form-control mb-1"
-          placeholder="Phone Number"
-          {...register('phone', {
-            required: 'Phone number is required',
-            pattern: {
-              value: /^[0-9]{10}$/,
-              message: 'Phone number must be 10 digits',
-            },
-          })}
-        />
+       <input
+  className="form-control mb-1"
+  placeholder="Phone Number"
+  {...register('phone', {
+    required: 'Phone number is required',
+    pattern: {
+      value: /^[0-9]{10}$/,
+      message: 'Phone number must be 10 digits',
+    },
+  })}
+/>
+{errors.phone && <p className="text-danger small">{errors.phone.message}</p>}
         {errors.number && <p className="text-danger small">{errors.number.message}</p>}
 
         {/* Message */}
